@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Öğrenci Detay Sayfası</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'arial', sans-serif;
+            display: flex;
+            width: 80%;
+        }
+
+        #sidebar {
+            width: 25%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #2c3e50;
+            color: white;
+            height: 100%;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+
+            #sidebar img {
+                height: 80px;
+                width: 80px;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+
+        #content {
+            width: 75%;
+            margin-left: 25%;
+            padding: 20px;
+            background-color: white;
+            height: 100vh;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        a {
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        li:hover {
+            color: #3498db;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+
+        .sub {
+            display: none;
+            padding-left: 20px;
+        }
+
+            .sub li {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container" style="display:flex;background-color:aliceblue">
+        <div id="sidebar">
+            <div>
+                <ul>
+                    <li style="margin-left:20px" onclick="toggleList('personal')">Kişisel Bilgiler</li>
+                    <ul class="sub" id="personal">
+                        <li style="margin-left:20px" onclick="goToSifreDegistirme()">Şifre Değiştirme</li>
+                    </ul>
+                    <li style="margin-left:20px" onclick="toggleList('profil')">Öğrenim</li>
+                    
+                        <ul class="sub" id="profil">
+                            <li style="margin-left:20px" onclick="goToDersOnayı()">Ders Onaylama</li>
+                            <li style="margin-left:20px">Sınavlar</li>
+                        </ul>
+
+                    <li style="margin-left:20px" onclick="toggleList('Cikis')">Çıkış Yap</li>
+                    <ul class="sub" id="Cikis">
+                        <li style="margin-left:20px" onclick="goToCikis()">Çıkış Yap</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script>
+        function toggleList(id) {
+            var list = document.getElementById(id);
+            if (list.style.display === "block") {
+                list.style.display = "none";
+            } else {
+                list.style.display = "block";
+            }
+        }
+        function goToDersOnayı() {
+            window.location.href = '@Url.Action("dersOnaylama","Akademisyen")';
+        }
+        function goToAgnoHesapla() {
+            window.location.href = '@Url.Action("CalculateAgno", "Education")';
+        }
+        function goToDersAlma() {
+            window.location.href = '@Url.Action("DersAlma","Education")';
+        }
+        function goToSifreDegistirme() {
+            window.location.href = '@Url.Action("SifreDegistirme","Personal_information")';
+        }
+   
+        function goToCikis() {
+            window.location.href='@Url.Action("cikis","Login")'
+        }
+    </script>
+</body>
+</html>

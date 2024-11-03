@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "OgrenciEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+@model  List<bolumModel>
+<html>
+<head>
+    <title>Öğrenci Ekle</title>
+</head>
+<body>
+    <div style="margin-left:300px; width: 400px;">
+        <h2>Öğrenci Ekle</h2>
+        <form action="@Url.Action("ogrenciEkle","Admin")" method="post" style="width:50%">
+            <label for="ogrenciAd">Öğrenci adı ekle:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="ogrenciAd" name="ogrenciAd" required>
+
+            <label for="ogrenciSoyad">Öğrenci Soyadı:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" id="ogrenciSoyad" name="ogrenciSoyad" required>
+
+            <label for="ogrenciTc">Öğrenci TC:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" id="ogrenciTc" name="ogrenciTc" required>
+
+            <label for="ogrenciNumara">Öğrenci Numara</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" id="ogrenciNumara" name="ogrenciNumara" required>
+
+            <label for="ogrenciBolum">Öğrenci Bölüm:</label>
+            <select name="ogrenciBolum" style="margin-bottom: 30px; width: 100%;">
+                @foreach (var bolum in Model)
+                {
+                    <option value="@bolum.BOLUM_ID">
+                        @bolum.BOLUM_AD
+                    </option>
+
+                }
+            </select>
+
+            <label for="ogrenciCinsiyet">Öğrenci cinsiyet:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="ogrenciCinsiyet" value="" required />
+
+            <label for="dogumTarihi">Doğum Tarihi:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="date" name="dogumTarihi" value="" required />
+
+            <label for="e_posta">E-posta:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="e_posta" value="" required />
+
+            <label for="telefon_no">Telefon no:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="telefon_no" value="" required />
+
+            <label for="ogrenciSifre">Öğrenci Şifre:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="ogrenciSifre" value="" required />
+
+            <label for="ogrenciAdres">Öğrenci adres:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="ogrenciAdres" value="" required />
+
+            <label for="baslangicYili">başlangıç yılı:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="baslangicYili" value="" required />
+
+            <label for="ogrenciDanisman">öğrenci danışmanı :</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" name="ogrenciDanisman" value="" required />
+
+            <!-- Formu göndermek için bir gönder düğmesi ekledim -->
+            <input type="submit" value="Öğrenci Ekle">
+        </form>
+    </div>
+</body>
+</html>
+

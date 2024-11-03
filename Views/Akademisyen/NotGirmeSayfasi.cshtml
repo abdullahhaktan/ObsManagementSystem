@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "NotGirme";
+    Layout = "~/Views/Shared/AkademisyenLayout.cshtml";
+}
+@model List<ObsSistem.Models.EntityFramework.alinanDersModel>
+<html>
+<head>
+    <title>Dersler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container mt-5" style="margin-left:50px;margin-bottom:50px">
+        <h2 class="text-center mb-4">Akdemisyene Ait Dersler</h2>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Ders Id</th>
+                    <th>Ders Alma ID</th>
+                    <th>Öğrenci Numara</th>
+                    <th>Öğrenci Adı</th>
+                    <th>Öğrenci Soyad</th>
+                    <th>Not Gir</th>
+                    <th>Sınav Tür</th>
+                    <th>Öğrenci Not</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ders in Model)
+                {
+                    <tr>
+                        <td>@ders.dersId</td>
+                        <td>@ders.dersAlmaId</td>
+                        <td>@ders.ogrenciNo</td>
+                        <td>@ders.ogrenciAd</td>
+                        <td>@ders.ogrenciSoyad</td>
+                        <td>
+                            <form action=@Url.Action("notKaydet","Akademisyen") method="post">
+
+                                <input type="hidden" name="dersId" value="@ders.dersId" />
+                                <input type="hidden" name="ogrenciNo" value="@ders.ogrenciNo" />
+
+                                <label for="ogrenciNot">not giriniz</label>
+                                <input type="text" name="ogrenciNot" />
+
+                                <br />
+
+                                <label for="sinavTur">Sınav türünü giriniz</label>
+                                <input type="text" name="sinavTur" />
+
+                                <br />
+
+                                <label for="sinavTarih">Sınav tarihini giriniz</label>
+                                <input type="date" name="sinavTarih" />
+
+                                <br />
+                                <br />
+                                <br />
+                                <button type="submit">kaydet</button>
+                            </form>
+                        </td>
+                        <td>
+                            @ders.sınavTur
+                        </td>
+                        <td>
+                            @ders.sınavNot
+                        </td>
+                        <td>
+                            <form action=@Url.Action("ogrencininHarfNotunuVer","Akademisyen") method="post">
+                                <input type="hidden" name="ogrenciNo" value="@ders.ogrenciNo" />
+                                <input type="hidden" name="dersId" value="@ders.dersId" />
+                                <input type="text" name="harfNot" value="" />
+                                <input type="submit" name="name" value="" />
+                            </form>
+                        </td>
+                        
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+        <form action=@Url.Action("alınanDersSilme","Akademisyen") method="post">
+            <label for="dersId">Silmek istediğiniz dersin Id'sini giriniz</label>
+            <input type="text" name="dersId" value="" />
+            <br />
+            <button type="submit" name="name" value="">Tıkla</button>
+            <br />
+            <br />
+        </form>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

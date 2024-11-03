@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "AkademisyenEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+@model List<bolumModel>
+<html>
+<head>
+    <title>Akademisyen Ekle</title>
+</head>
+<body>
+
+    <div style="margin-left:300px; width: 400px;">
+        <h3> Akademisyen Ekle </h3>
+        <form action=@Url.Action("akademisyenEkle","Admin") method="post">
+            <label for="AkademisyenAdSoyad">Akademisyen ad soyad ekle:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="AkademisyenAdSoyad" name="AkademisyenAdSoyad" required>
+
+            <label for="AkademisyenTC">akademisyen TC ekle:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="AkademisyenTC" name="AkademisyenTC" required>
+
+
+            <label for="AkademisyenSifre">Akademisyen şifre ekle:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="AkademisyenSifre" name="AkademisyenSifre" required>
+
+            <label for="AkademisyenDanismanlikDurumu">akademisyen danışmanlık durumu:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="AkademisyenDanismanlikDurumu" name="AkademisyenDanismanlikDurumu" required>
+
+            <label for="dersBolum">Ders Bölüm:</label>
+            <select name="dersBolum" style="margin-bottom: 30px; width: 100%;">
+                @foreach (var bolum in Model)
+                {
+                    <option value="@bolum.BOLUM_ID">
+                        @bolum.BOLUM_AD
+                    </option>
+                }
+            </select>
+
+
+            <input type="submit" value="Akdemisyen Ekle">
+        </form>
+    </div>
+</body>
+</html>

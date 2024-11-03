@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Öğrenci Detay Sayfası</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'arial', sans-serif;
+            display: flex;
+            width:80%;
+        }
+
+        #sidebar {
+            width: 25%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #2c3e50;
+            color: white;
+            height: 100%;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+
+            #sidebar img {
+                height: 80px;
+                width: 80px;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+
+        #content {
+            width: 75%;
+            margin-left: 25%;
+            padding: 20px;
+            background-color: white;
+            height: 100vh;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+        a {
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+            li:hover {
+                color: #3498db;
+            }
+        a:hover {
+            color: #3498db;
+        }
+
+        .sub {
+            display: none;
+            padding-left: 20px;
+        }
+
+            .sub li {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container" style="display:flex;background-color:aliceblue">
+        <div id="sidebar">
+            <div>
+                <ul>
+                    <div class="container" style="display:flex">
+                        <div style="margin-left:40px"> @Session["OgrenciAdi"] @Session["OgrenciSoyadi"] - @Session["OgrenciBolum"] @Session["OgrenciNumara"]</div>
+                    </div>
+                    <hr />
+                    <li style="margin-left:20px" onclick="toggleList('personal')">Kişisel Bilgiler</li>
+                    <ul class="sub" id="personal">
+                        <li style="margin-left:20px" onclick="goToIsDeneyimiEkle()">İş Deneyimi ekleme</li>
+                        <li style="margin-left:20px" onclick="goToIsDeneyimleri()">İş deneyimleri</li>
+                        <li style="margin-left:20px" onclick="goToOzlukBilgileri()">Özlük Bilgileri</li>
+                        <li style="margin-left:20px" onclick="goToSifreDegistirme()">Şifre Değiştirme</li>
+                    </ul>
+                    <li style="margin-left:20px" onclick="toggleList('profil')">Öğrenim</li>
+                    <ul class="sub" id="profil">
+                        <li style="margin-left:20px" onclick="goToAgnoHesapla()">Agno Hesapla</li>
+                        <li style="margin-left:20px" onclick="goToDersAlma()">Ders Alma</li>
+                        <li style="margin-left:20px" onclick="goToDersAlmaListesi()">Ders Alma Listesi</li>
+                        <li style="margin-left:20px" onclick="goToNotKart()">Not Kartı</li>
+                        <li style="margin-left:20px" onclick="goToSınavlar()">Sınavlar</li>
+                    </ul>
+
+                    <li style="margin-left:20px" onclick="toggleList('BelgeTalep')">Belge Talep</li>
+                    <ul class="sub" id="BelgeTalep">
+                        <li style="margin-left:20px" onclick="goToBelgeTalep()"> Belge Talep et</li>
+                    </ul>
+                    <li style="margin-left:20px" onclick="toggleList('KimlikKartTalep')">Kimlik Kart Talep</li>
+                    <ul class="sub" id="KimlikKartTalep">
+                        <li style="margin-left:20px" onclick="goToKimlikKartTalep()">Kimkik Kart Talep et</li>
+                    </ul>
+                    <li style="margin-left:20px" onclick="toggleList('Yardım')">Yardım</li>
+                    <ul class="sub" id="Yardım">
+                        <li style="margin-left:20px" onclick="goToTalepOlusturma()">Talep oluştur</li>
+                        <li style="margin-left:20px" onclick="goToTalepleriGoruntule()">Talepleri görüntüle</li>
+                        <a  style="margin-left:20px;color:antiquewhite" href="https://birimler.atauni.edu.tr/ogrenci-isleri-daire-baskanligi/bilgi-rehberleri/">Öğrenci bilgi rehberi</a>
+                    </ul>
+                    <li style="margin-left:20px" onclick="toggleList('Cikis')">Çıkış Yap</li>
+                    <ul class="sub" id="Cikis">
+                        <li style="margin-left:20px" onclick="goToCikis()">Çıkış Yap</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script>
+        function toggleList(id) {
+            var list = document.getElementById(id);
+            if (list.style.display === "block")
+            {
+                list.style.display = "none";
+            }
+            else
+            {
+                list.style.display = "block";
+            }
+        }
+
+          function goToNotKart() {
+            window.location.href = '@Url.Action("notKartlari","Education")';
+        }
+
+        function goToSınavlar() {
+            window.location.href = '@Url.Action("sinavlar","Education")';
+        }
+        function goToBelgeTalep() {
+            window.location.href = '@Url.Action("belgeTalepEt", "Personal_information")';
+        }
+        function goToTalepleriGoruntule() {
+            window.location.href = '@Url.Action("talepleriGoruntule","Personal_information")';
+        }
+        function goToAgnoHesapla() {
+            window.location.href = '@Url.Action("agnoHesapla", "Education")';
+        }
+        function goToDersAlma() {
+            window.location.href = '@Url.Action("DersAlma","Education")';
+        }
+        function goToSifreDegistirme() {
+            window.location.href = '@Url.Action("SifreDegistirme","Personal_information")';
+        }
+        function goToOzlukBilgileri() {
+            window.location.href = '@Url.Action("ozlukBilgileriGetir","Personal_information")'
+        }
+         function goToDersAlmaListesi() {
+            window.location.href = '@Url.Action("dersAlmaListesi", "Education")';
+        }
+        function goToIsDeneyimiEkle() {
+            window.location.href = '@Url.Action("isDeneyimiEkle", "Personal_information")'
+        }
+        function goToIsDeneyimleri() {
+            window.location.href = '@Url.Action("isDeneyimleri", "Personal_information")'
+        }
+        function goToCikis() {
+            window.location.href='@Url.Action("cikis","Login")'
+        }
+        function goToTalepOlusturma() {
+            window.location.href='@Url.Action("talepOlusturma","Personal_information")'
+        }
+        function goToKimlikKartTalep() {
+            window.location.href='@Url.Action("kimlikKartTalepEt", "Personal_information")'
+        }
+    </script>
+</body>
+</html>

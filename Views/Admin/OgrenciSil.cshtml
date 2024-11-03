@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Öğrenci Sil";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using ObsSistem.Models.EntityFramework
+@model List<ogrenciModel>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ders Silme Sayfası</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5" style="margin-left:50px;margin-bottom:50px">
+        <h2 class="text-center mb-4">Öğrenci Silme</h2>
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Öğrenci TC</th>
+                    <th scope="col">Öğrenci Numara</th>
+                    <th scope="col">Öğrenci Ad</th>
+                    <th scope="col">Öğrenci Soyad</th>
+                    <th scope="col">Öğrenci Bölüm</th>
+                    <th scope="col">Öğrenci E-Posta</th>
+                    <th scope="col">Öğrenci Cinsiyet</th>
+                    <th scope="col">Öğrenci Telefon No</th>
+                    <th scope="col">Öğrenci Şifre</th>
+                    <th scope="col">Öğrenci Adres</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ogrenci in Model)
+                {
+                    <tr>
+                        <td>@ogrenci.TC</td>
+                        <td>@ogrenci.NUMARA</td>
+                        <td>@ogrenci.AD</td>
+                        <td>@ogrenci.SOYAD</td>
+                        <td>@ogrenci.BOLUM</td>
+                        <td>@ogrenci.E_POSTA</td>
+                        <td>@ogrenci.CINSIYET</td>
+                        <td>@ogrenci.TELEFON_NO</td>
+                        <td>@ogrenci.SIFRE</td>
+                        <td>@ogrenci.SIFRE</td>
+                        <td>@ogrenci.ADRES</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form method="post" action="@Url.Action("OgrenciSil", "Admin")" style="width:50%">
+            <label for="ogrenciNumara">Lütfen silmek istediğiniz öğrencinin numarasını giriniz</label>
+            <input type="text" name="ogrenciNumara" required />
+            <input type="submit" name="name" value="Öğrenci Sil" />
+        </form>
+    </div>
+    <script>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

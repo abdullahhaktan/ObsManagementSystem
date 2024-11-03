@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Sınavlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+@model List<sınavModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Sınavlar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .deneyim-table {
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-left:50px">
+        <div class="row">
+            <h3 class="col">Sınavlar</h3>
+        </div>
+
+        <table class="table table-bordered deneyim-table">
+            <thead>
+                <tr>
+                    <th>Sınav Tür</th>
+                    <th>Ders Ad</th>
+                    <th>Tarih</th>
+                    <th>Not</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SINAV_TUR</td>
+                        <td>@item.DERS_AD</td>
+                        <td>@item.SINAV_TARIH</td>
+                        <td>@item.OGRENCI_NOT</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+

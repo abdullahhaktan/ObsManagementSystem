@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ObsSistemModelStoreContainer" CdmEntityContainer="ObsSistemEntities1">
+    <EntitySetMapping Name="TBL_OGRENCI">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_OGRENCI">
+        <MappingFragment StoreEntitySet="TBL_OGRENCI">
+          <ScalarProperty Name="OGRENCI_ID" ColumnName="OGRENCI_ID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+          <ScalarProperty Name="TC" ColumnName="TC" />
+          <ScalarProperty Name="CINSIYET" ColumnName="CINSIYET" />
+          <ScalarProperty Name="NUMARA" ColumnName="NUMARA" />
+          <ScalarProperty Name="DOGUM_TARIHI" ColumnName="DOGUM_TARIHI" />
+          <ScalarProperty Name="SINIF" ColumnName="SINIF" />
+          <ScalarProperty Name="TELEFON_NO" ColumnName="TELEFON_NO" />
+          <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+          <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

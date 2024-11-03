@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Belge Talep Et";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-left:200px;width:500px;margin-bottom:100px">
+    <h2>Belge Talep Et</h2>
+    <form action="@Url.Action("belgeTalepEt", "Personal_information")" method="post">
+        <div class="mb-3">
+            <label for="belgeTuru" class="form-label">Belge Türü</label>
+            <select class="form-select" id="belgeTuru" name="belgeTuru" required>
+                <option value= "" selected disabled>Belge Türü Seçiniz</option>
+                <option value="Ogrenci Belgesi">Öğrenci Belgesi</option>
+                <option value="Transkript">Transkript</option>
+                <option value="Not Dokumu">Not Dokümü</option>
+
+                <!-- Diğer belge türleri buraya eklenebilir -->
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Talep Et</button>
+    </form>
+</div>

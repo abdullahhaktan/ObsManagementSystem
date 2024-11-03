@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ObsSistemModelStoreContainer" CdmEntityContainer="ObsSistemEntities1">
+    <EntitySetMapping Name="TBL_BOLUM">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_BOLUM">
+        <MappingFragment StoreEntitySet="TBL_BOLUM">
+          <ScalarProperty Name="BOLUM_ID" ColumnName="BOLUM_ID" />
+          <ScalarProperty Name="BOLUM_AD" ColumnName="BOLUM_AD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DERS">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_DERS">
+        <MappingFragment StoreEntitySet="TBL_DERS">
+          <ScalarProperty Name="DERS_ID" ColumnName="DERS_ID" />
+          <ScalarProperty Name="DERS_ADI" ColumnName="DERS_ADI" />
+          <ScalarProperty Name="DERS_KODU" ColumnName="DERS_KODU" />
+          <ScalarProperty Name="KREDI" ColumnName="KREDI" />
+          <ScalarProperty Name="BOLUM" ColumnName="BOLUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DERS_ALMA">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_DERS_ALMA">
+        <MappingFragment StoreEntitySet="TBL_DERS_ALMA">
+          <ScalarProperty Name="SINAV_ID" ColumnName="SINAV_ID" />
+          <ScalarProperty Name="DERS_ID" ColumnName="DERS_ID" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+          <ScalarProperty Name="SAAT" ColumnName="SAAT" />
+          <ScalarProperty Name="SINAV_TURU" ColumnName="SINAV_TURU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_MESAJ">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_MESAJ">
+        <MappingFragment StoreEntitySet="TBL_MESAJ">
+          <ScalarProperty Name="MESAJ_ID" ColumnName="MESAJ_ID" />
+          <ScalarProperty Name="GONDEREN_ID" ColumnName="GONDEREN_ID" />
+          <ScalarProperty Name="ALICI_ID" ColumnName="ALICI_ID" />
+          <ScalarProperty Name="MESAJ_ICERIGI" ColumnName="MESAJ_ICERIGI" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_NOT">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_NOT">
+        <MappingFragment StoreEntitySet="TBL_NOT">
+          <ScalarProperty Name="NOT_ID" ColumnName="NOT_ID" />
+          <ScalarProperty Name="OGRENCI_ID" ColumnName="OGRENCI_ID" />
+          <ScalarProperty Name="DERS_ID" ColumnName="DERS_ID" />
+          <ScalarProperty Name="NOTU" ColumnName="NOTU" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_OGRENCI">
+      <EntityTypeMapping TypeName="ObsSistemModel.TBL_OGRENCI">
+        <MappingFragment StoreEntitySet="TBL_OGRENCI">
+          <ScalarProperty Name="NUMARA" ColumnName="NUMARA" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+          <ScalarProperty Name="TC" ColumnName="TC" />
+          <ScalarProperty Name="CINSIYET" ColumnName="CINSIYET" />
+          <ScalarProperty Name="DOGUM_TARIHI" ColumnName="DOGUM_TARIHI" />
+          <ScalarProperty Name="E_POSTA" ColumnName="E_POSTA" />
+          <ScalarProperty Name="TELEFON_NO" ColumnName="TELEFON_NO" />
+          <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+          <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+          <ScalarProperty Name="BASLANGIC_YILI" ColumnName="BASLANGIC_YILI" />
+          <ScalarProperty Name="BOLUM" ColumnName="BOLUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

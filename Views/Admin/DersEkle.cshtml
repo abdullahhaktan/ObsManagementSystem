@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model  ObsSistem.Models.EntityFramework.myViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminView</title>
+</head>
+<body>
+
+    <div style="margin-left:300px; width: 400px;">
+        <h3> Ders Ekle </h3>
+        <form method="post" action="@Url.Action("dersEkle", "Admin")" style="width:50%">
+            <label for="dersAd">Ders Adı:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="dersAd" name="dersAd" required>
+
+            <label for="dersKod">Ders Kodu:</label>
+            <input style="width: 100%; margin-bottom: 30px" type="text" id="dersKod" name="dersKod" required>
+
+            <label for="dersAkademisyen">Ders Akademisyen:</label>
+            <select name="dersAkademisyen" style="margin-bottom: 30px; width: 100%;">
+                @foreach (var akademisyen in Model.akademisyenList)
+                {
+                    <option value="@akademisyen.AkademisyenID">
+                        @akademisyen.AkademisyenAdSoyad
+                    </option>
+                }
+            </select>
+
+            <label for="dersYariYil">Ders Yarıyıl:</label>
+            <select name="dersYariyil" style="margin-bottom:30px;width:100%">
+                <option value="1">
+                    1
+                </option>
+                <option value="2">
+                    2
+                </option>
+                <option value="3">
+                    3
+                </option>
+                <option value="4">
+                    4
+                </option>
+                <option value="5">
+                    5
+                </option>
+                <option value="6">
+                    6
+                </option>
+                <option value="7">
+                    7
+                </option>
+                <option value="8">
+                    8
+                </option>
+            </select>
+
+            <label for="dersBolum">Ders Bölüm:</label>
+            <select name="dersBolum" style="margin-bottom: 30px; width: 100%;">
+                @foreach (var bolum in Model.bolumList)
+                {
+                    <option value="@bolum.BOLUM_ID">
+                        @bolum.BOLUM_AD
+                    </option>
+                }
+            </select>
+
+            <label for="dersKredi">Ders kredi:</label>
+            <input type="text" name="dersKredi" value="" required />
+
+
+            <!-- Formu göndermek için bir gönder düğmesi ekledim -->
+            <input style="margin-bottom:20px" type="submit" value="Ders Ekle">
+
+        </form>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ObsSistemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_OGRENCI">
+    <Key>
+      <PropertyRef Name="OGRENCI_ID" />
+    </Key>
+    <Property Name="OGRENCI_ID" Type="Int32" Nullable="false" />
+    <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TC" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="CINSIYET" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="NUMARA" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="DOGUM_TARIHI" Type="DateTime" Precision="0" />
+    <Property Name="SINIF" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TELEFON_NO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SIFRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="ObsSistemEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_OGRENCI" EntityType="Self.TBL_OGRENCI" />
+  </EntityContainer>
+</Schema>

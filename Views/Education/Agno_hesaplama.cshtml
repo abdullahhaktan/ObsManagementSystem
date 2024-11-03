@@ -1,0 +1,296 @@
+﻿@{
+    ViewBag.Title = "calculate agno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+
+@model List<dersModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AGNO Hesaplama</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        #container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 50px;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        #calculate {
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AGNO Hesaplama Sonucu</h1>
+
+    <p>AGNO Değeri: @ViewBag.agno</p>
+
+    @{ List<string> liste = new List<string>();}
+
+    <form @Url.Action("agnoyuHesapla", "Education") method="post">
+        <div class="container" style="display:flex">
+            <!-- 1 ve 2 yarıyılları atama-->
+            @for (int i = 1; i <= 2; i++)
+            {
+                <h3>@i. yarıyıl </h3>
+                <div class="container" style="display:flex">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Dersin kodu</th>
+                                <th>Ders Adı</th>
+                                <th>Dersi veren</th>
+                                <th>Kredi</th>
+                                <th>mevcut harf notu</th>
+                                <th>harf notu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var ders in Model.Where(x => x.DERS_YARI_YIL == @i))
+                            {
+                                int a = 1;
+                                <tr>
+                                    <td>@ders.DERS_KODU</td>
+                                    <td>@ders.DERS_ADI</td>
+                                    <td>@ders.DERSI_VEREN</td>
+                                    <td>@ders.KREDI</td>
+                                    <td>@ders.HARF_NOTU</td>
+                                    <td>
+                                        <select name="ders_{@i}">
+                                            <option value="value" selected>@ders.HARF_NOTU</option>
+                                            <option value="value">AA</option>
+                                            <option value="value">BA</option>
+                                            <option value="value">BB</option>
+                                            <option value="value">CB</option>
+                                            <option value="value">CC</option>
+                                            <option value="value">DC</option>
+                                            <option value="value">DD</option>
+                                            <option value="value">FF</option>
+                                        </select>
+                                        @{liste.Add("ders_" + i);}
+
+                                        @{a = a + 1;}
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <div class="container" style="display:flex">
+            <!-- 3 ve 4 yarıyılları atama-->
+
+            @for (int i = 3; i < 5; i++)
+            {
+                <h3>@i. yarıyıl </h3>
+                <div class="container" style="display:flex">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Dersin kodu</th>
+                                <th>Ders Adı</th>
+                                <th>Dersi veren</th>
+                                <th>Kredi</th>
+                                <th>mevcut harf notu</th>
+                                <th>harf notu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ders in Model.Where(x => x.DERS_YARI_YIL == @i))
+                            {
+                                int a = 1;
+
+                                <tr>
+                                    <td>@ders.DERS_KODU</td>
+                                    <td>@ders.DERS_ADI</td>
+                                    <td>@ders.DERSI_VEREN</td>
+                                    <td>@ders.KREDI</td>
+                                    <td>@ders.HARF_NOTU</td>
+                                    <td>
+                                        <select name="ders{@a}">
+                                            <option value="value" selected>@ders.HARF_NOTU</option>
+                                            <option value="value">AA</option>
+                                            <option value="value">BA</option>
+                                            <option value="value">BB</option>
+                                            <option value="value">CB</option>
+                                            <option value="value">CC</option>
+                                            <option value="value">DC</option>
+                                            <option value="value">DD</option>
+                                            <option value="value">FF</option>
+                                        </select>
+                                        @{liste.Add("ders_" + i);}
+
+                                        @{a = a + 1;}
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <div class="container" style="display:flex">
+            <!--5 ve 7 yarıyıl dersleri-->
+            @for (int i = 5; i < 7; i++)
+            {
+                <h3>@i. yarıyıl </h3>
+                <div class="container" style="display:flex">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Dersin kodu</th>
+                                <th>Ders Adı</th>
+                                <th>Dersi veren</th>
+                                <th>Kredi</th>
+                                <th>mevcut harf notu</th>
+                                <th>harf notu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ders in Model.Where(x => x.DERS_YARI_YIL == @i))
+                            {
+                                int a = 1;
+
+                                <tr>
+                                    <td>@ders.DERS_KODU</td>
+                                    <td>@ders.DERS_ADI</td>
+                                    <td>@ders.DERSI_VEREN</td>
+                                    <td>@ders.KREDI</td>
+                                    <td>@ders.HARF_NOTU</td>
+                                    <td>
+                                        <select name="ders{@a}">
+                                            <option value="value" selected>@ders.HARF_NOTU</option>
+                                            <option value="value">AA</option>
+                                            <option value="value">BA</option>
+                                            <option value="value">BB</option>
+                                            <option value="value">CB</option>
+                                            <option value="value">CC</option>
+                                            <option value="value">DC</option>
+                                            <option value="value">DD</option>
+                                            <option value="value">FF</option>
+                                        </select>
+                                        @{liste.Add("ders_" + i);}
+
+                                        @{a = a + 1;}
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <div class="container" style="display:flex">
+            <!--7. 8. yarıyıllar-->
+            @for (int i = 7; i <= 8; i++)
+            {
+                int a = 1;
+
+                <h3>@i. yarıyıl </h3>
+                <div class="container" style="display:flex">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Dersin kodu</th>
+                                <th>Ders Adı</th>
+                                <th>Dersi veren</th>
+                                <th>Kredi</th>
+                                <th>mevcut harf notu</th>
+                                <th>harf notu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ders in Model.Where(x => x.DERS_YARI_YIL == @i))
+                            {
+                                <tr>
+                                    <td>@ders.DERS_KODU</td>
+                                    <td>@ders.DERS_ADI</td>
+                                    <td>@ders.DERSI_VEREN</td>
+                                    <td>@ders.KREDI</td>
+                                    <td>@ders.HARF_NOTU</td>
+                                    <td>
+                                        <select name="ders{@a}">
+                                            <option value="value" selected>@ders.HARF_NOTU</option>
+                                            <option value="value">AA</option>
+                                            <option value="value">BA</option>
+                                            <option value="value">BB</option>
+                                            <option value="value">CB</option>
+                                            <option value="value">CC</option>
+                                            <option value="value">DC</option>
+                                            <option value="value">DD</option>
+                                            <option value="value">FF</option>
+                                        </select>
+                                        @{liste.Add("ders_" + i);}
+
+                                        @{a = a + 1;}
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div>
+                        @ViewBag.Agno
+                    </div>
+                </div>
+            }
+        </div>
+        <button style="margin-bottom:50px;margin-top:20px" type="submit"> Agno Hesapla </button>
+    </form>
+</body>
+</html>

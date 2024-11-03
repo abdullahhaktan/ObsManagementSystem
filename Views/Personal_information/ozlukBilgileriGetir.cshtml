@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "ozlukBilgileriGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using ObsSistem.Models.EntityFramework
+@model List<ogrenciModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Özlük Bilgileri</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .content {
+            padding: 20px; /* İçeriğin kenar boşlukları */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 content">
+                <h2>Öğrenci Özlük Bilgileri</h2>
+                <hr />
+
+                @foreach (var ogrenci in Model)
+                {
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>TC: @ogrenci.TC</td>
+                            </tr>
+                            <tr>
+                                <td>Numara: @ogrenci.NUMARA</td>
+                            </tr>
+                            <tr>
+                                <td>Ad: @ogrenci.AD</td>
+                            </tr>
+                            <tr>
+                                <td>Soyad: @ogrenci.SOYAD</td>
+                            </tr>
+                            <tr>
+                                <td>Cinsiyet: @ogrenci.CINSIYET</td>
+                            </tr>
+                            <tr>
+                                <td>Doğum Tarihi: @ogrenci.DOGUM_TARIHI</td>
+                            </tr>
+                            <tr>
+                                <td>E-Posta: @ogrenci.E_POSTA</td>
+                            </tr>
+                            <tr>
+                                <td>Telefon No: @ogrenci.TELEFON_NO</td>
+                            </tr>
+                            <tr>
+                                <td>Şifre: @ogrenci.SIFRE</td>
+                            </tr>
+                            <tr>
+                                <td>Adres: @ogrenci.ADRES</td>
+                            </tr>
+                            <tr>
+                                <td>Başlangıç Yılı: @ogrenci.BASLANGIC_YILI</td>
+                            </tr>
+                            <tr>
+                                <td>Bölüm: @ogrenci.BOLUM</td>
+                            </tr>
+                            <tr>
+                                <td>Danışman: @ogrenci.DANISMAN</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS ve Popper.js (isteğe bağlı, dropdownlar için gereklidir) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

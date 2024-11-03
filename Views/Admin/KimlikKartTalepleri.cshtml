@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "KimlikKartTalepleriniGor";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using ObsSistem.Models.EntityFramework
+@model List<KimlikKartTalepEtModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Kimik Kart talep Sayfası</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .deneyim-table {
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-left:50px">
+        <div class="row">
+            <h3 class="col">Kimlik Kart Talepleri</h3>
+        </div>
+
+        <table class="table table-bordered deneyim-table">
+            <thead>
+                <tr>
+                    <th>Talep ID</th>
+                    <th>Öğrenci No</th>
+                    <th>Onaylama</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.talepId</td>
+                        <td>@item.OgrenciNo</td>
+                        <td>
+                            <form action="@Url.Action("kimlikKartTalepleriniGor","Admin")" method="post">
+                                <input type="hidden" name="ogrenciNo" value="@item.OgrenciNo" />
+                                <button type="submit">Onayla</button>
+                            </form>
+                        </td>     
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

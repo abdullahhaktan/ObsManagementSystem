@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "dersAlmaListesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+
+@model List<dersAlmaModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>DERS ALMA LİSTESİ</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .deneyim-table {
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-left:50px">
+        <div class="row">
+            <h3 class="col">DERS ALMA LİSTESİ</h3>
+        </div>
+
+        <table class="table table-bordered deneyim-table">
+            <thead>
+                <tr>
+                    <th>Ders Alma ID</th>
+                    <th>Ders Adı</th>
+                    <th>Dersi Veren</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ders in Model)
+                {
+                    <tr>
+                        <td>@ders.DERS_ID</td>
+                        <td>@ders.dersAd</td>
+                        <td>@ders.dersVeren</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+

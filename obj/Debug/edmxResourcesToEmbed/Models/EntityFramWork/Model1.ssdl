@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ObsSistemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_BOLUM">
+    <Key>
+      <PropertyRef Name="BOLUM_ID" />
+    </Key>
+    <Property Name="BOLUM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BOLUM_AD" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_DERS">
+    <Key>
+      <PropertyRef Name="DERS_ID" />
+    </Key>
+    <Property Name="DERS_ID" Type="int" Nullable="false" />
+    <Property Name="DERS_ADI" Type="nvarchar" MaxLength="50" />
+    <Property Name="DERS_KODU" Type="int" />
+    <Property Name="KREDI" Type="tinyint" />
+    <Property Name="BOLUM" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_DERS_ALMA">
+    <Key>
+      <PropertyRef Name="SINAV_ID" />
+    </Key>
+    <Property Name="SINAV_ID" Type="int" Nullable="false" />
+    <Property Name="DERS_ID" Type="int" />
+    <Property Name="TARIH" Type="date" />
+    <Property Name="SAAT" Type="time" Precision="7" />
+    <Property Name="SINAV_TURU" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TBL_MESAJ">
+    <Key>
+      <PropertyRef Name="MESAJ_ID" />
+    </Key>
+    <Property Name="MESAJ_ID" Type="int" Nullable="false" />
+    <Property Name="GONDEREN_ID" Type="int" />
+    <Property Name="ALICI_ID" Type="int" />
+    <Property Name="MESAJ_ICERIGI" Type="text" />
+    <Property Name="TARIH" Type="date" />
+  </EntityType>
+  <EntityType Name="TBL_NOT">
+    <Key>
+      <PropertyRef Name="NOT_ID" />
+    </Key>
+    <Property Name="NOT_ID" Type="int" Nullable="false" />
+    <Property Name="OGRENCI_ID" Type="int" />
+    <Property Name="DERS_ID" Type="int" />
+    <Property Name="NOTU" Type="int" />
+    <Property Name="TARIH" Type="date" />
+  </EntityType>
+  <EntityType Name="TBL_OGRENCI">
+    <Key>
+      <PropertyRef Name="NUMARA" />
+    </Key>
+    <Property Name="NUMARA" Type="int" Nullable="false" />
+    <Property Name="AD" Type="varchar" MaxLength="50" />
+    <Property Name="SOYAD" Type="varchar" MaxLength="50" />
+    <Property Name="TC" Type="nchar" MaxLength="11" />
+    <Property Name="CINSIYET" Type="nvarchar" MaxLength="2" />
+    <Property Name="DOGUM_TARIHI" Type="date" />
+    <Property Name="E_POSTA" Type="nvarchar" MaxLength="50" />
+    <Property Name="TELEFON_NO" Type="nvarchar" MaxLength="50" />
+    <Property Name="SIFRE" Type="varchar" MaxLength="30" />
+    <Property Name="ADRES" Type="text" />
+    <Property Name="BASLANGIC_YILI" Type="date" />
+    <Property Name="BOLUM" Type="int" />
+  </EntityType>
+  <Association Name="FK_TBL_DERS_ALMA_TBL_DERS">
+    <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+    <End Role="TBL_DERS_ALMA" Type="Self.TBL_DERS_ALMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_DERS">
+        <PropertyRef Name="DERS_ID" />
+      </Principal>
+      <Dependent Role="TBL_DERS_ALMA">
+        <PropertyRef Name="DERS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_NOT_TBL_DERS1">
+    <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+    <End Role="TBL_NOT" Type="Self.TBL_NOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_DERS">
+        <PropertyRef Name="DERS_ID" />
+      </Principal>
+      <Dependent Role="TBL_NOT">
+        <PropertyRef Name="DERS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ObsSistemModelStoreContainer">
+    <EntitySet Name="TBL_BOLUM" EntityType="Self.TBL_BOLUM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DERS" EntityType="Self.TBL_DERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DERS_ALMA" EntityType="Self.TBL_DERS_ALMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MESAJ" EntityType="Self.TBL_MESAJ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_NOT" EntityType="Self.TBL_NOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_OGRENCI" EntityType="Self.TBL_OGRENCI" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBL_DERS_ALMA_TBL_DERS" Association="Self.FK_TBL_DERS_ALMA_TBL_DERS">
+      <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+      <End Role="TBL_DERS_ALMA" EntitySet="TBL_DERS_ALMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_NOT_TBL_DERS1" Association="Self.FK_TBL_NOT_TBL_DERS1">
+      <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+      <End Role="TBL_NOT" EntitySet="TBL_NOT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

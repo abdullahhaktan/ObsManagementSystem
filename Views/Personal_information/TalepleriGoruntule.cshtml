@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "TalepleriGoruntule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+@model List<talepModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>İş Deneyimleri</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .deneyim-table {
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-left:50px">
+        <div class="row">
+            <h3 class="col">Talepler</h3>
+        </div>
+
+        <table class="table table-bordered deneyim-table">
+            <thead>
+                <tr>
+                    <th>talepId</th>
+                    <th>gonderenId</th>
+                    <th>mesaj</th>
+                    <th>konu</th>
+                    <th>mesajYanit</th>
+                    <th>durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.talepId</td>
+                        <td>@item.gonderenId</td>
+                        <td>@item.mesaj</td>
+                        <td>@item.konu</td>
+                        <td>@item.mesajYanit</td>
+                        <td>@item.durum</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "DersOnaylamaSayfası";
+    Layout = "~/Views/Shared/AkademisyenLayout.cshtml";
+}
+@using ObsSistem.Models.EntityFramework
+@model List<dersAlmaModel>
+
+<html>
+<head>
+    <title>Dersler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container mt-5" style="margin-left:200px;margin-bottom:50px">
+        <h2 class="text-center mb-4">Ders Onaylama</h2>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>OGRENCI NO</th>
+                    <th>OGRENCI ADI</th>
+                    <th>OGRENCI SOYAD</th>
+                    <th>DERS ID</th>
+                    <th>DERS AD</th>
+                    <th>DERSI VEREN</th>
+                    <th>DERS KODU</th>
+                    <th>KREDI</th>
+                    <th>Onaylama</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ders in Model)
+                {
+                    <tr>
+                        <td>@ders.ogrenciNumara</td>
+                        <td>@ders.ogrenciAd</td>
+                        <td>@ders.ogrenciSoyad</td>
+                        <td>@ders.DERS_ID</td>
+                        <td>@ders.dersAd</td>
+                        <td>@ders.dersVeren</td>
+                        <td>@ders.dersKod</td>
+                        <td>@ders.kredi</td>
+                        <td>
+                            <form action=@Url.Action("dersOnaylama","Akademisyen") method="post">
+                                <input type="hidden" name="dersId" value="@ders.DERS_ID" />
+                                <input type="hidden" name="ogrenciNo" value="@ders.ogrenciNumara" />
+                                <button type="submit">onayla</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+        <form action=@Url.Action("onayiSil","Akademisyen") method="post">
+            <label for="dersID">Silmek istediğiniz dersin id'sini giriniz</label>
+            <input type="text" name="dersID" value="" />
+            <input type="submit" name="name" value="" />
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

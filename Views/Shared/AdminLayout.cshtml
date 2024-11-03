@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Sayfası</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'arial', sans-serif;
+            display: flex;
+            width: 80%;
+        }
+
+        #sidebar {
+            width: 25%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #2c3e50;
+            color: white;
+            height: 100%;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+
+            #sidebar img {
+                height: 80px;
+                width: 80px;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+
+        #content {
+            width: 75%;
+            margin-left: 25%;
+            padding: 20px;
+            background-color: #;
+            height: 100vh;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            cursor: pointer;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+            li:hover {
+                color: #3498db;
+            }
+
+        .sub {
+            display: none;
+            padding-left: 20px;
+        }
+
+            .sub li {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container" style="display:flex">
+        <div id="sidebar">
+            <div class="container" style="display:flex">
+                <ul>
+                    <div class="container" style="display:flex">
+                        <img src="#" alt="Alternate Text" style="margin-left:50px" />
+                        <div style="margin-left:40px"> </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToDersEkle()">Ders Ekle</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToDersSil()">Ders Sil</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToOgrenciEkle()">Öğrenci Ekle</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToOgrenciSil()">Öğrenci Sil</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToBolumEkle()">Bölüm Ekle</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToBolumSil()">Bölüm Sil</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToAkademisyenEkle()">Akademisyen Ekle</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToAkademisyenSil()">Akademisyen Sil</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToTalepleriGor()">Talepler</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToKimlikKartTalepleriGor()">Kimlik Kartı Talepleri</a>
+                        <a href="#" style="margin-left:20px; margin-bottom:10px; color:cadetblue" onclick="goToBelgeTalepleriGoruntule()">Belge Talepleri</a>
+
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+    <script>
+        
+        function goToBelgeTalepleriGoruntule() {
+            window.location.href = '@Url.Action("belgeTalepleriGor","Admin")';
+        }
+        function goToDersEkle() {
+            window.location.href = '@Url.Action("DersEkle", "Admin")';
+        }
+         function goToDersSil() {
+            window.location.href = '@Url.Action("dersSil", "Admin")';
+        }
+        function goToOgrenciEkle() {
+            window.location.href = '@Url.Action("ogrenciEkle", "Admin")';
+        }
+         function goToOgrenciSil() {
+            window.location.href = '@Url.Action("ogrenciSil", "Admin")';
+        }
+         function goToBolumEkle() {
+            window.location.href = '@Url.Action("bolumEkle", "Admin")';
+        }
+         function goToBolumSil() {
+            window.location.href = '@Url.Action("bolumSil", "Admin")';
+        }
+         function goToAkademisyenEkle() {
+            window.location.href = '@Url.Action("akademisyenEkle", "Admin")';
+        }
+         function goToAkademisyenSil() {
+            window.location.href = '@Url.Action("akademisyenSil", "Admin")';
+        }
+        function goToTalepleriGor() {
+            window.location.href = '@Url.Action("talepleriGor","Admin")';
+        }
+        function goToKimlikKartTalepleriGor() {
+            window.location.href='@Url.Action("kimlikKartTalepleriniGor","Admin")'
+        }
+    </script>
+</body>
+</html>
+

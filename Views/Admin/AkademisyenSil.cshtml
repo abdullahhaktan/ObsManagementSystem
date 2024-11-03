@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Akademisyen Sil";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using ObsSistem.Models.EntityFramework
+@model List<AkademisyenModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Akademisyen Silme Sayfası</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5" style="margin-left:50px;margin-bottom:50px">
+        <h2 class="text-center mb-4">Akademisyen Silme</h2>
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">AKADEMISYEN ID</th>
+                    <th scope="col">AKADEMISYEN TC</th>
+                    <th scope="col">AKADEMISYEN AD SOYAD</th>
+                    <th scope="col">AKADEMISYEN SIFRE</th>
+                    <th scope="col">AKADEMISYEN DANIŞMANLIK DURUMU</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var akademisyen in Model)
+                {
+                    <tr>
+                        <td>@akademisyen.AkademisyenID</td>
+                        <td>@akademisyen.AkademisyenTC</td>
+                        <td>@akademisyen.AkademisyenAdSoyad</td>
+                        <td>@akademisyen.AkademisyenSifre</td>
+                        <td>@akademisyen.AkademisyenDanismanlikDurumu</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form method="post" action="@Url.Action("akademisyenSil", "Admin")" style="width:50%">
+            <label for="akademisyenID">Lütfen silmek istediğiniz akademisyenin id'sini giriniz</label>
+            <input type="text" name="akademisyenID" required />
+            <input type="submit" name="name" required />
+        </form>
+    </div>
+    <script>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Formu</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color:#808080; /* Beyaz arka plan rengi */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="~/Content/indir.jpg" alt="Alternate Text" style="display: block; margin: 0 auto; height: 100px; width: 100px;" />
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Kullanıcı Giriş Formu</h3>
+                        <form action="@Url.Action("Login","Login")" method="post">
+
+                            <div class="form-group">
+                                <label for="tc">Kullanıcı Adı:</label>
+                                <input type="number" class="form-control" id="tc" name="tc">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Şifre:</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                            </div>
+                        </form>
+                        <br />
+                        <br />
+                        <form action=@Url.Action("akademisyenGiris","Akademisyen") method="get">
+                            <div class="text-left">
+                                <button type="submit" class="btn btn-secondary">Akademisyen girişi için tıklayınız</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

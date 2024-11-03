@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ObsSistemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_BOLUM">
+    <Key>
+      <PropertyRef Name="BOLUM_ID" />
+    </Key>
+    <Property Name="BOLUM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BOLUM_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_DERS">
+    <Key>
+      <PropertyRef Name="DERS_ID" />
+    </Key>
+    <Property Name="DERS_ID" Type="Int32" Nullable="false" />
+    <Property Name="DERS_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DERS_KODU" Type="Int32" />
+    <Property Name="KREDI" Type="Byte" />
+    <Property Name="BOLUM" Type="Int32" />
+    <NavigationProperty Name="TBL_DERS_ALMA" Relationship="Self.FK_TBL_DERS_ALMA_TBL_DERS" FromRole="TBL_DERS" ToRole="TBL_DERS_ALMA" />
+    <NavigationProperty Name="TBL_NOT" Relationship="Self.FK_TBL_NOT_TBL_DERS1" FromRole="TBL_DERS" ToRole="TBL_NOT" />
+  </EntityType>
+  <EntityType Name="TBL_DERS_ALMA">
+    <Key>
+      <PropertyRef Name="SINAV_ID" />
+    </Key>
+    <Property Name="SINAV_ID" Type="Int32" Nullable="false" />
+    <Property Name="DERS_ID" Type="Int32" />
+    <Property Name="TARIH" Type="DateTime" Precision="0" />
+    <Property Name="SAAT" Type="Time" Precision="7" />
+    <Property Name="SINAV_TURU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_DERS" Relationship="Self.FK_TBL_DERS_ALMA_TBL_DERS" FromRole="TBL_DERS_ALMA" ToRole="TBL_DERS" />
+  </EntityType>
+  <EntityType Name="TBL_MESAJ">
+    <Key>
+      <PropertyRef Name="MESAJ_ID" />
+    </Key>
+    <Property Name="MESAJ_ID" Type="Int32" Nullable="false" />
+    <Property Name="GONDEREN_ID" Type="Int32" />
+    <Property Name="ALICI_ID" Type="Int32" />
+    <Property Name="MESAJ_ICERIGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TARIH" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="TBL_NOT">
+    <Key>
+      <PropertyRef Name="NOT_ID" />
+    </Key>
+    <Property Name="NOT_ID" Type="Int32" Nullable="false" />
+    <Property Name="OGRENCI_ID" Type="Int32" />
+    <Property Name="DERS_ID" Type="Int32" />
+    <Property Name="NOTU" Type="Int32" />
+    <Property Name="TARIH" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TBL_DERS" Relationship="Self.FK_TBL_NOT_TBL_DERS1" FromRole="TBL_NOT" ToRole="TBL_DERS" />
+  </EntityType>
+  <EntityType Name="TBL_OGRENCI">
+    <Key>
+      <PropertyRef Name="NUMARA" />
+    </Key>
+    <Property Name="NUMARA" Type="Int32" Nullable="false" />
+    <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TC" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="CINSIYET" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="DOGUM_TARIHI" Type="DateTime" Precision="0" />
+    <Property Name="E_POSTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TELEFON_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SIFRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BASLANGIC_YILI" Type="DateTime" Precision="0" />
+    <Property Name="BOLUM" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_TBL_DERS_ALMA_TBL_DERS">
+    <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+    <End Role="TBL_DERS_ALMA" Type="Self.TBL_DERS_ALMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_DERS">
+        <PropertyRef Name="DERS_ID" />
+      </Principal>
+      <Dependent Role="TBL_DERS_ALMA">
+        <PropertyRef Name="DERS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_NOT_TBL_DERS1">
+    <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+    <End Role="TBL_NOT" Type="Self.TBL_NOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_DERS">
+        <PropertyRef Name="DERS_ID" />
+      </Principal>
+      <Dependent Role="TBL_NOT">
+        <PropertyRef Name="DERS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ObsSistemEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_BOLUM" EntityType="Self.TBL_BOLUM" />
+    <EntitySet Name="TBL_DERS" EntityType="Self.TBL_DERS" />
+    <EntitySet Name="TBL_DERS_ALMA" EntityType="Self.TBL_DERS_ALMA" />
+    <EntitySet Name="TBL_MESAJ" EntityType="Self.TBL_MESAJ" />
+    <EntitySet Name="TBL_NOT" EntityType="Self.TBL_NOT" />
+    <EntitySet Name="TBL_OGRENCI" EntityType="Self.TBL_OGRENCI" />
+    <AssociationSet Name="FK_TBL_DERS_ALMA_TBL_DERS" Association="Self.FK_TBL_DERS_ALMA_TBL_DERS">
+      <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+      <End Role="TBL_DERS_ALMA" EntitySet="TBL_DERS_ALMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_NOT_TBL_DERS1" Association="Self.FK_TBL_NOT_TBL_DERS1">
+      <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+      <End Role="TBL_NOT" EntitySet="TBL_NOT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

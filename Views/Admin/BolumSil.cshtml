@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Akademisyen Sil";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using ObsSistem.Models.EntityFramework
+@model List<bolumModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bölüm Silme Sayfası</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5" style="margin-left:50px;margin-bottom:50px">
+        <h2 class="text-center mb-4">Bölüm Silme</h2>
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">BOLUM ID</th>
+                    <th scope="col">BOLUM AD</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bolum in Model)
+                {
+                    <tr>
+                        <td>@bolum.BOLUM_ID</td>
+                        <td>@bolum.BOLUM_AD</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form method="post" action="@Url.Action("bolumSil", "Admin")" style="width:50%">
+            <label for="bolumID">Lütfen silmek istediğiniz bölümün id'sini giriniz</label>
+            <input type="text" name="bolumID" required />
+            <input type="submit" name="name" required />
+        </form>
+    </div>
+    <script>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

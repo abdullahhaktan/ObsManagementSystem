@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ObsSistemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBL_AKADEMISYEN">
+          <Key>
+            <PropertyRef Name="AKADEMISYEN_ID" />
+          </Key>
+          <Property Name="AKADEMISYEN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AKADEMISYEN_AD" Type="varchar" MaxLength="50" />
+          <Property Name="AKADEMISYEN_SOYAD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_BOLUM">
+          <Key>
+            <PropertyRef Name="BOLUM_ID" />
+          </Key>
+          <Property Name="BOLUM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOLUM_AD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_DERS">
+          <Key>
+            <PropertyRef Name="DERS_ID" />
+          </Key>
+          <Property Name="DERS_ID" Type="int" Nullable="false" />
+          <Property Name="DERS_ADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="DERS_KODU" Type="int" />
+          <Property Name="KREDI" Type="tinyint" />
+          <Property Name="BOLUM" Type="varchar" MaxLength="50" />
+          <Property Name="DERSI_VEREN" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_DERS_ALMA">
+          <Key>
+            <PropertyRef Name="SINAV_ID" />
+          </Key>
+          <Property Name="SINAV_ID" Type="int" Nullable="false" />
+          <Property Name="DERS_ID" Type="int" />
+          <Property Name="TARIH" Type="date" />
+          <Property Name="SAAT" Type="time" Precision="7" />
+          <Property Name="SINAV_TURU" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TBL_IS_DENEYIMLERI">
+          <Key>
+            <PropertyRef Name="deneyimId" />
+          </Key>
+          <Property Name="deneyimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SirketAdi" Type="varchar" MaxLength="50" />
+          <Property Name="Pozisyon" Type="varchar" MaxLength="50" />
+          <Property Name="baslangicTarihi" Type="date" />
+          <Property Name="bitisTarihi" Type="date" />
+          <Property Name="isTanimi" Type="text" />
+          <Property Name="ogrenciNumara" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_MESAJ">
+          <Key>
+            <PropertyRef Name="MESAJ_ID" />
+          </Key>
+          <Property Name="MESAJ_ID" Type="int" Nullable="false" />
+          <Property Name="GONDEREN_ID" Type="int" />
+          <Property Name="ALICI_ID" Type="int" />
+          <Property Name="MESAJ_ICERIGI" Type="text" />
+          <Property Name="TARIH" Type="date" />
+        </EntityType>
+        <EntityType Name="TBL_NOT">
+          <Key>
+            <PropertyRef Name="NOT_ID" />
+          </Key>
+          <Property Name="NOT_ID" Type="int" Nullable="false" />
+          <Property Name="OGRENCI_ID" Type="int" />
+          <Property Name="DERS_ID" Type="int" />
+          <Property Name="NOTU" Type="int" />
+          <Property Name="TARIH" Type="date" />
+        </EntityType>
+        <EntityType Name="TBL_OGRENCI">
+          <Key>
+            <PropertyRef Name="NUMARA" />
+          </Key>
+          <Property Name="NUMARA" Type="int" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="TC" Type="varchar" MaxLength="12" />
+          <Property Name="CINSIYET" Type="nvarchar" MaxLength="2" />
+          <Property Name="DOGUM_TARIHI" Type="date" />
+          <Property Name="E_POSTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TELEFON_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="SIFRE" Type="varchar" MaxLength="30" />
+          <Property Name="ADRES" Type="text" />
+          <Property Name="BASLANGIC_YILI" Type="date" />
+          <Property Name="BOLUM" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TBL_DERS_ALMA_TBL_DERS">
+          <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+          <End Role="TBL_DERS_ALMA" Type="Self.TBL_DERS_ALMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_DERS">
+              <PropertyRef Name="DERS_ID" />
+            </Principal>
+            <Dependent Role="TBL_DERS_ALMA">
+              <PropertyRef Name="DERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI">
+          <End Role="TBL_OGRENCI" Type="Self.TBL_OGRENCI" Multiplicity="0..1" />
+          <End Role="TBL_IS_DENEYIMLERI" Type="Self.TBL_IS_DENEYIMLERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_OGRENCI">
+              <PropertyRef Name="NUMARA" />
+            </Principal>
+            <Dependent Role="TBL_IS_DENEYIMLERI">
+              <PropertyRef Name="ogrenciNumara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_NOT_TBL_DERS1">
+          <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+          <End Role="TBL_NOT" Type="Self.TBL_NOT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_DERS">
+              <PropertyRef Name="DERS_ID" />
+            </Principal>
+            <Dependent Role="TBL_NOT">
+              <PropertyRef Name="DERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ObsSistemModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_AKADEMISYEN" EntityType="Self.TBL_AKADEMISYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_BOLUM" EntityType="Self.TBL_BOLUM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DERS" EntityType="Self.TBL_DERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DERS_ALMA" EntityType="Self.TBL_DERS_ALMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_IS_DENEYIMLERI" EntityType="Self.TBL_IS_DENEYIMLERI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MESAJ" EntityType="Self.TBL_MESAJ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_NOT" EntityType="Self.TBL_NOT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_OGRENCI" EntityType="Self.TBL_OGRENCI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_DERS_ALMA_TBL_DERS" Association="Self.FK_TBL_DERS_ALMA_TBL_DERS">
+            <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+            <End Role="TBL_DERS_ALMA" EntitySet="TBL_DERS_ALMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI" Association="Self.FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI">
+            <End Role="TBL_OGRENCI" EntitySet="TBL_OGRENCI" />
+            <End Role="TBL_IS_DENEYIMLERI" EntitySet="TBL_IS_DENEYIMLERI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_NOT_TBL_DERS1" Association="Self.FK_TBL_NOT_TBL_DERS1">
+            <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+            <End Role="TBL_NOT" EntitySet="TBL_NOT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ObsSistemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBL_AKADEMISYEN">
+          <Key>
+            <PropertyRef Name="AKADEMISYEN_ID" />
+          </Key>
+          <Property Name="AKADEMISYEN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AKADEMISYEN_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AKADEMISYEN_SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL_BOLUM">
+          <Key>
+            <PropertyRef Name="BOLUM_ID" />
+          </Key>
+          <Property Name="BOLUM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOLUM_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL_DERS">
+          <Key>
+            <PropertyRef Name="DERS_ID" />
+          </Key>
+          <Property Name="DERS_ID" Type="Int32" Nullable="false" />
+          <Property Name="DERS_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DERS_KODU" Type="Int32" />
+          <Property Name="KREDI" Type="Byte" />
+          <Property Name="BOLUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DERSI_VEREN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_DERS_ALMA" Relationship="Self.FK_TBL_DERS_ALMA_TBL_DERS" FromRole="TBL_DERS" ToRole="TBL_DERS_ALMA" />
+          <NavigationProperty Name="TBL_NOT" Relationship="Self.FK_TBL_NOT_TBL_DERS1" FromRole="TBL_DERS" ToRole="TBL_NOT" />
+        </EntityType>
+        <EntityType Name="TBL_DERS_ALMA">
+          <Key>
+            <PropertyRef Name="SINAV_ID" />
+          </Key>
+          <Property Name="SINAV_ID" Type="Int32" Nullable="false" />
+          <Property Name="DERS_ID" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="0" />
+          <Property Name="SAAT" Type="Time" Precision="7" />
+          <Property Name="SINAV_TURU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_DERS" Relationship="Self.FK_TBL_DERS_ALMA_TBL_DERS" FromRole="TBL_DERS_ALMA" ToRole="TBL_DERS" />
+        </EntityType>
+        <EntityType Name="TBL_IS_DENEYIMLERI">
+          <Key>
+            <PropertyRef Name="deneyimId" />
+          </Key>
+          <Property Name="deneyimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SirketAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pozisyon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="baslangicTarihi" Type="DateTime" Precision="0" />
+          <Property Name="bitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="isTanimi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ogrenciNumara" Type="Int32" />
+          <NavigationProperty Name="TBL_OGRENCI" Relationship="Self.FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI" FromRole="TBL_IS_DENEYIMLERI" ToRole="TBL_OGRENCI" />
+        </EntityType>
+        <EntityType Name="TBL_MESAJ">
+          <Key>
+            <PropertyRef Name="MESAJ_ID" />
+          </Key>
+          <Property Name="MESAJ_ID" Type="Int32" Nullable="false" />
+          <Property Name="GONDEREN_ID" Type="Int32" />
+          <Property Name="ALICI_ID" Type="Int32" />
+          <Property Name="MESAJ_ICERIGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TARIH" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="TBL_NOT">
+          <Key>
+            <PropertyRef Name="NOT_ID" />
+          </Key>
+          <Property Name="NOT_ID" Type="Int32" Nullable="false" />
+          <Property Name="OGRENCI_ID" Type="Int32" />
+          <Property Name="DERS_ID" Type="Int32" />
+          <Property Name="NOTU" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBL_DERS" Relationship="Self.FK_TBL_NOT_TBL_DERS1" FromRole="TBL_NOT" ToRole="TBL_DERS" />
+        </EntityType>
+        <EntityType Name="TBL_OGRENCI">
+          <Key>
+            <PropertyRef Name="NUMARA" />
+          </Key>
+          <Property Name="NUMARA" Type="Int32" Nullable="false" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="CINSIYET" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="DOGUM_TARIHI" Type="DateTime" Precision="0" />
+          <Property Name="E_POSTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TELEFON_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BASLANGIC_YILI" Type="DateTime" Precision="0" />
+          <Property Name="BOLUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_IS_DENEYIMLERI" Relationship="Self.FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI" FromRole="TBL_OGRENCI" ToRole="TBL_IS_DENEYIMLERI" />
+        </EntityType>
+        <Association Name="FK_TBL_DERS_ALMA_TBL_DERS">
+          <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+          <End Role="TBL_DERS_ALMA" Type="Self.TBL_DERS_ALMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_DERS">
+              <PropertyRef Name="DERS_ID" />
+            </Principal>
+            <Dependent Role="TBL_DERS_ALMA">
+              <PropertyRef Name="DERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_NOT_TBL_DERS1">
+          <End Role="TBL_DERS" Type="Self.TBL_DERS" Multiplicity="0..1" />
+          <End Role="TBL_NOT" Type="Self.TBL_NOT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_DERS">
+              <PropertyRef Name="DERS_ID" />
+            </Principal>
+            <Dependent Role="TBL_NOT">
+              <PropertyRef Name="DERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI">
+          <End Role="TBL_OGRENCI" Type="Self.TBL_OGRENCI" Multiplicity="0..1" />
+          <End Role="TBL_IS_DENEYIMLERI" Type="Self.TBL_IS_DENEYIMLERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_OGRENCI">
+              <PropertyRef Name="NUMARA" />
+            </Principal>
+            <Dependent Role="TBL_IS_DENEYIMLERI">
+              <PropertyRef Name="ogrenciNumara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ObsSistemEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBL_AKADEMISYEN" EntityType="Self.TBL_AKADEMISYEN" />
+          <EntitySet Name="TBL_BOLUM" EntityType="Self.TBL_BOLUM" />
+          <EntitySet Name="TBL_DERS" EntityType="Self.TBL_DERS" />
+          <EntitySet Name="TBL_DERS_ALMA" EntityType="Self.TBL_DERS_ALMA" />
+          <EntitySet Name="TBL_IS_DENEYIMLERI" EntityType="Self.TBL_IS_DENEYIMLERI" />
+          <EntitySet Name="TBL_MESAJ" EntityType="Self.TBL_MESAJ" />
+          <EntitySet Name="TBL_NOT" EntityType="Self.TBL_NOT" />
+          <EntitySet Name="TBL_OGRENCI" EntityType="Self.TBL_OGRENCI" />
+          <AssociationSet Name="FK_TBL_DERS_ALMA_TBL_DERS" Association="Self.FK_TBL_DERS_ALMA_TBL_DERS">
+            <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+            <End Role="TBL_DERS_ALMA" EntitySet="TBL_DERS_ALMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_NOT_TBL_DERS1" Association="Self.FK_TBL_NOT_TBL_DERS1">
+            <End Role="TBL_DERS" EntitySet="TBL_DERS" />
+            <End Role="TBL_NOT" EntitySet="TBL_NOT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI" Association="Self.FK_TBL_IS_DENEYIMLERI_TBL_OGRENCI">
+            <End Role="TBL_OGRENCI" EntitySet="TBL_OGRENCI" />
+            <End Role="TBL_IS_DENEYIMLERI" EntitySet="TBL_IS_DENEYIMLERI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ObsSistemModelStoreContainer" CdmEntityContainer="ObsSistemEntities5">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ObsSistemModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_AKADEMISYEN">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_AKADEMISYEN">
+              <MappingFragment StoreEntitySet="TBL_AKADEMISYEN">
+                <ScalarProperty Name="AKADEMISYEN_ID" ColumnName="AKADEMISYEN_ID" />
+                <ScalarProperty Name="AKADEMISYEN_AD" ColumnName="AKADEMISYEN_AD" />
+                <ScalarProperty Name="AKADEMISYEN_SOYAD" ColumnName="AKADEMISYEN_SOYAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_BOLUM">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_BOLUM">
+              <MappingFragment StoreEntitySet="TBL_BOLUM">
+                <ScalarProperty Name="BOLUM_ID" ColumnName="BOLUM_ID" />
+                <ScalarProperty Name="BOLUM_AD" ColumnName="BOLUM_AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_DERS">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_DERS">
+              <MappingFragment StoreEntitySet="TBL_DERS">
+                <ScalarProperty Name="DERS_ID" ColumnName="DERS_ID" />
+                <ScalarProperty Name="DERS_ADI" ColumnName="DERS_ADI" />
+                <ScalarProperty Name="DERS_KODU" ColumnName="DERS_KODU" />
+                <ScalarProperty Name="KREDI" ColumnName="KREDI" />
+                <ScalarProperty Name="BOLUM" ColumnName="BOLUM" />
+                <ScalarProperty Name="DERSI_VEREN" ColumnName="DERSI_VEREN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_DERS_ALMA">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_DERS_ALMA">
+              <MappingFragment StoreEntitySet="TBL_DERS_ALMA">
+                <ScalarProperty Name="SINAV_ID" ColumnName="SINAV_ID" />
+                <ScalarProperty Name="DERS_ID" ColumnName="DERS_ID" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="SAAT" ColumnName="SAAT" />
+                <ScalarProperty Name="SINAV_TURU" ColumnName="SINAV_TURU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_IS_DENEYIMLERI">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_IS_DENEYIMLERI">
+              <MappingFragment StoreEntitySet="TBL_IS_DENEYIMLERI">
+                <ScalarProperty Name="deneyimId" ColumnName="deneyimId" />
+                <ScalarProperty Name="SirketAdi" ColumnName="SirketAdi" />
+                <ScalarProperty Name="Pozisyon" ColumnName="Pozisyon" />
+                <ScalarProperty Name="baslangicTarihi" ColumnName="baslangicTarihi" />
+                <ScalarProperty Name="bitisTarihi" ColumnName="bitisTarihi" />
+                <ScalarProperty Name="isTanimi" ColumnName="isTanimi" />
+                <ScalarProperty Name="ogrenciNumara" ColumnName="ogrenciNumara" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MESAJ">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_MESAJ">
+              <MappingFragment StoreEntitySet="TBL_MESAJ">
+                <ScalarProperty Name="MESAJ_ID" ColumnName="MESAJ_ID" />
+                <ScalarProperty Name="GONDEREN_ID" ColumnName="GONDEREN_ID" />
+                <ScalarProperty Name="ALICI_ID" ColumnName="ALICI_ID" />
+                <ScalarProperty Name="MESAJ_ICERIGI" ColumnName="MESAJ_ICERIGI" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_NOT">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_NOT">
+              <MappingFragment StoreEntitySet="TBL_NOT">
+                <ScalarProperty Name="NOT_ID" ColumnName="NOT_ID" />
+                <ScalarProperty Name="OGRENCI_ID" ColumnName="OGRENCI_ID" />
+                <ScalarProperty Name="DERS_ID" ColumnName="DERS_ID" />
+                <ScalarProperty Name="NOTU" ColumnName="NOTU" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_OGRENCI">
+            <EntityTypeMapping TypeName="ObsSistemModel.TBL_OGRENCI">
+              <MappingFragment StoreEntitySet="TBL_OGRENCI">
+                <ScalarProperty Name="NUMARA" ColumnName="NUMARA" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="CINSIYET" ColumnName="CINSIYET" />
+                <ScalarProperty Name="DOGUM_TARIHI" ColumnName="DOGUM_TARIHI" />
+                <ScalarProperty Name="E_POSTA" ColumnName="E_POSTA" />
+                <ScalarProperty Name="TELEFON_NO" ColumnName="TELEFON_NO" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="BASLANGIC_YILI" ColumnName="BASLANGIC_YILI" />
+                <ScalarProperty Name="BOLUM" ColumnName="BOLUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

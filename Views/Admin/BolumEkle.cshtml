@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "AkademisyenEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Bölüm Ekle</title>
+</head>
+<body>
+
+    <div style="margin-left:300px; width: 400px;">
+        <h3> Bölüm Ekle </h3>
+        <form action=@Url.Action("bolumEkle","Admin") method="post">
+            <label for="bolumAd">Bölüm ekle:</label>
+            <input style="width:100%; margin-bottom: 30px" type="text" id="bolumAd" name="bolumAd" required>
+            <input type="submit" value="Bölüm Ekle">
+        </form>
+    </div>
+</body>
+</html>
+
+
