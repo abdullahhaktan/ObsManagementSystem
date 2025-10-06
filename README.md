@@ -48,7 +48,7 @@ Bu projenin çalıştırılması için gerekli **.NET ortamı** ve **SQL Server*
 
 2.  **Veritabanı Kurulumu:**
     * **SQL Server**'da yeni bir veritabanı oluşturun.
-    * Veritabanı şemasını oluşturmak için projenin **data access** katmanındaki (Entity Framework Code First veya manuel SQL scriptleri) talimatları uygulayın.
+    * Projedeki ilgili tüm tabloları oluşturun
 
 3.  **Bağlantı Dizesini Ayarlama:**
     * Projenin yapılandırma dosyasındaki (`Web.config` veya `appsettings.json`) **veritabanı bağlantı dizesini** kendi yerel SQL Server ayarlarınıza göre güncelleyin.
@@ -106,7 +106,7 @@ Running this project requires the necessary **.NET environment** and **SQL Serve
 
 2.  **Database Setup:**
     * Create a new database in **SQL Server**.
-    * Follow the instructions in the project's **data access** layer (Entity Framework Code First or manual SQL scripts) to set up the database schema.
+    * Create all relevant tables in the poject
 
 3.  **Configuring the Connection String:**
     * Update the **database connection string** in the project's configuration file (`Web.config` or `appsettings.json`) to match your local SQL Server settings.
