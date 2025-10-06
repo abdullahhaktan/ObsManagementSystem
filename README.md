@@ -118,3 +118,12 @@ Running this project requires the necessary **.NET environment** and **SQL Serve
 
 ---
 ---
+
+<img width="329" height="157" alt="Ekran görüntüsü 2025-10-06 141426" src="https://github.com/user-attachments/assets/068ea1f3-45d6-45d2-a32e-0f5dc6c09583" />
+
+---
+
+<img width="448" height="212" alt="Ekran görüntüsü 2025-10-06 141446" src="https://github.com/user-attachments/assets/178cdc00-4902-4c60-8cdd-1408746e97ac" />
+
+
+
