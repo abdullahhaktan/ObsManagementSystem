@@ -90,7 +90,6 @@ namespace ObsSistem.Controllers
             conn.Open();
             conn2.Open();
 
-
             SqlCommand cmd2 = new SqlCommand("INSERT INTO TBL_DERS(DERS_AD,DERS_KOD,DERS_BOLUM,DERS_AKADEMISYEN,DERS_YARI_YIL,DERS_KREDI) VALUES(@dersAd,@dersKod,@dersBolum,@dersAkademisyen,@dersYariyil,@dersKredi)", conn);
 
             cmd2.Parameters.AddWithValue("@dersAd", dersAd);
@@ -621,3 +620,4 @@ namespace ObsSistem.Controllers
         }
     }
 }
+
